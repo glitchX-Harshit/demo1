@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now - Allemande Clinic</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="logo">(A)</div>
+            <a href="book.html" class="btn-book">BOOK NOW</a>
+        </div>
+        
+        <div class="nav-right">
+            <a href="#" class="nav-link">
+                <i class="fa-solid fa-circle-user" style="font-size: 18px;"></i> Log In
+            </a>
+            <a href="#" class="nav-link cart-icon">
+                <i class="fa-solid fa-bag-shopping" style="font-size: 20px;"></i>
+                <span class="cart-count">0</span>
+            </a>
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="schedule-main-wrapper">
+        <div class="schedule-header">
+            <h1>Schedule your service</h1>
+            <p>Check out our availability and book the date and time that works for you</p>
+        </div>
+
+        <!-- Step 1: Calendar View -->
+        <div class="schedule-content" id="step-1">
+            <div class="schedule-left">
+                <div class="calendar-header-row">
+                    <h2>Select a Date and Time</h2>
+                    <div class="timezone-display">
+                        Time zone: India Standard Time (IST) <i class="fa-solid fa-chevron-down"></i>
+                        <br><span id="live-ist-time" style="font-size: 13px; color: #666; margin-top: 5px; display: inline-block;"></span>
+                    </div>
+                </div>
+                
+                <div class="calendar-container">
+                    <div class="calendar-widget">
+                        <div class="calendar-nav">
+                            <button class="cal-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                            <span class="cal-month-year">March &nbsp;&nbsp;2026</span>
+                            <button class="cal-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="weekday">Sun</div><div class="weekday">Mon</div><div class="weekday">Tue</div><div class="weekday">Wed</div><div class="weekday">Thu</div><div class="weekday">Fri</div><div class="weekday">Sat</div>
+                            
+                            <div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div>
+                            <div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div><div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div>
+                            <div class="cal-day">15</div><div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day selected"><span class="day-number">21</span></div>
+                            <div class="cal-day has-dots"><span class="day-number">22</span><div class="dot"></div></div><div class="cal-day has-dots"><span class="day-number">23</span><div class="dot"></div></div><div class="cal-day has-dots"><span class="day-number">24</span><div class="dot"></div></div><div class="cal-day has-dots"><span class="day-number">25</span><div class="dot"></div></div><div class="cal-day has-dots"><span class="day-number">26</span><div class="dot"></div></div><div class="cal-day has-dots"><span class="day-number">27</span><div class="dot"></div></div><div class="cal-day">28</div>
+                            <div class="cal-day">29</div><div class="cal-day has-dots"><span class="day-number">30</span><div class="dot"></div></div><div class="cal-day has-dots"><span class="day-number">31</span><div class="dot"></div></div>
+                        </div>
+                    </div>
+                    
+                    <div class="availability-info">
+                        <h3>Availability for Saturday, March 21</h3>
+                        <p class="no-avail">No availability</p>
+                        <button class="btn-check-next">Check Next Availability</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule-right">
+                <div class="service-details-box">
+                    <h2>Service Details</h2>
+                    <hr>
+                    <div class="service-name-row">
+                        <div>Dermal Fillers</div>
+                    </div>
+                    <details class="more-details">
+                        <summary>More details <i class="fa-solid fa-chevron-down"></i></summary>
+                        <div class="details-content">A non-surgical cosmetic procedure aimed at restoring facial volume and smoothing wrinkles.</div>
+                    </details>
+                    <button class="btn-next" onclick="goToStep2()">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Details Flow -->
+        <div class="schedule-content step-hidden" id="step-2" style="display: none;">
+            <div class="schedule-left">
+                <h2 style="font-weight: 300; font-size: 24px; margin-bottom: 30px;">Add your details</h2>
+                <form id="booking-form" onsubmit="event.preventDefault(); alert('Booking Confirmed!');">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" class="booking-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" class="booking-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="phone-input" class="booking-input" value="+91 " required>
+                        <small style="color: #666; font-size: 12px; margin-top: 5px; display: block;">Must include +91 country code</small>
+                    </div>
+                </form>
+            </div>
+            <div class="schedule-right">
+                <div class="service-details-box">
+                    <h2>Service Details</h2>
+                    <hr>
+                    <div class="service-name-time" style="margin-bottom: 30px;">
+                        <p style="font-weight: 400; margin-bottom: 10px; font-size: 18px;">Dermal Fillers</p>
+                        <p style="color: #666; font-size: 14px;">Saturday, March 21, 2026</p>
+                    </div>
+                    <button class="btn-submit" onclick="document.getElementById('booking-form').requestSubmit()">Book Now</button>
+                    <button class="btn-back" onclick="goToStep1()" style="background: none; border: none; text-decoration: underline; cursor: pointer; display: block; width: 100%; margin-top: 15px; color: #666;">Back</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pre-footer section -->
+    <section class="pre-footer-section">
+        <div class="pre-footer-text">
+            Join our community for new product launches, skincare tips, and<br>
+            exclusive collaborations delivered straight to your inbox.
+        </div>
+        <div class="pre-footer-nav">
+            <a href="index.html">Home</a>
+            <a href="treatment.html">Treatment Menu</a>
+            <a href="beforeafter.html">Before & After</a>
+            <a href="about.html">About</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-top">
+            <div class="footer-form-container">
+                <form action="#" method="post">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" class="footer-input" required>
+                    <div class="footer-checkbox-group">
+                        <input type="checkbox" id="subscribe-check" required>
+                        <label for="subscribe-check">Yes, subscribe me to your newsletter *</label>
+                    </div>
+                    <button type="submit" class="footer-submit-btn">SUBSCRIBE</button>
+                </form>
+            </div>
+            <div class="footer-info-container">
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <div class="footer-divider-line"></div>
+                <div class="footer-address">
+                    123-456-7890<br>
+                    info@mysite.com<br>
+                    500 Terry Francine Street, San<br>
+                    Francisco, CA 94158
+                </div>
+                <div class="footer-policy-links">
+                    <a href="#">Refund Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Accessibility Statement</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-logo-large">(A)</div>
+            <div class="footer-copyright">
+                © 2035 by Allemande Clinic. Powered and secured by <a href="#">Wix</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sidebar Menu -->
+    <div class="sidebar-menu">
+        <button class="sidebar-close" aria-label="Close Menu">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+        </button>
+        <nav class="sidebar-links">
+            <a href="index.html">Home</a>
+            <a href="treatment.html">Treatment Menu</a>
+            <a href="beforeafter.html">Before & After</a>
+            <a href="about.html">About</a>
+        </nav>
+    </div>
+
+    <!-- GSAP added for menu animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="gsap-animations.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
