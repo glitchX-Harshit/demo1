@@ -1,4 +1,9 @@
-/* --- CSS RESET & GLOBAL STYLES --- */
+﻿/* --- CSS RESET & GLOBAL STYLES --- */
+::selection {
+    background-color: #000000;
+    color: #ffffff;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +17,7 @@
     --primary-dark: #3D3835;
 }
 
-body {
+body, html {
     background-color: #ffffff;
     color: #333333;
     overflow-x: hidden;
@@ -209,6 +214,11 @@ body {
     height: 25%;
 }
 
+
+/* Desktop: wrapper is invisible (children are absolutely positioned). Mobile: flex row. */
+.hero-actions-row {
+    display: contents;
+}
 /* --- SIGNATURE TREATMENTS SECTION --- */
 .treatments-section {
     padding: 0px 0px;
@@ -336,7 +346,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
+    z-index: 1;
 }
 
 .trusted-content {
@@ -783,12 +793,12 @@ body {
 }
 
 .footer-logo-large {
-    font-size: clamp(60px, 15vw, 180px);
-    /* Huge scalable text */
+    font-size: clamp(20px, 6.5vw, 180px);
     font-weight: 400;
     color: var(--primary-dark);
     line-height: 0.8;
     letter-spacing: -2px;
+    white-space: nowrap;
 }
 
 .footer-copyright {
@@ -1317,241 +1327,318 @@ body {
 
 
 /* --- RESPONSIVE ADJUSTMENTS --- */
+
+/* ============================================
+   TABLET â€” 900px and below
+   ============================================ */
 @media (max-width: 900px) {
-    .block-main {
-        width: 60%;
-    }
 
-    .block-explore {
-        left: 60%;
-        width: 40%;
-    }
+    /* Hero */
+    .block-main  { width: 60%; }
+    .block-explore { left: 60%; width: 40%; }
+    .block-book    { top: 75%; width: 40%; }
 
-    .block-book {
-        top: 75%;
-        width: 40%;
-    }
-
+    /* Treatments */
     .treatments-grid {
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: minmax(200px, auto);
     }
-
-    .cell-injectables,
-    .cell-laser,
-    .cell-body,
-    .cell-small-img,
-    .cell-explore,
-    .cell-large-img {
+    .cell-injectables, .cell-laser, .cell-body,
+    .cell-small-img, .cell-explore, .cell-large-img {
         grid-column: span 1;
         grid-row: span 1;
     }
+    .cell-explore   { grid-column: 1 / 3; }
+    .cell-large-img { grid-column: 1 / 3; grid-row: auto; min-height: 400px; }
 
-    .cell-explore {
-        grid-column: 1 / 3;
-    }
-
-    .cell-large-img {
-        grid-column: 1 / 3;
-        grid-row: auto;
-        min-height: 400px;
-    }
-
-    .testimonials-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
+    /* Testimonials */
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
     .t-quote-cell:nth-child(5) {
         grid-column: span 2;
         aspect-ratio: auto;
         min-height: 250px;
     }
 
-    .transform-action-box {
-        width: 35%;
-        aspect-ratio: auto;
-        height: 150px;
-    }
+    /* Transformations */
+    .transform-action-box { width: 35%; aspect-ratio: auto; height: 150px; }
 
-    .clinic-intro-section {
-        flex-direction: column;
-        padding: 80px 40px;
-    }
+    /* Intro */
+    .clinic-intro-section { flex-direction: column; padding: 80px 40px; }
+    .intro-right { max-width: 100%; }
 
-    .intro-right {
-        max-width: 100%;
-    }
+    /* Gallery */
+    .gallery-section { grid-template-columns: repeat(2, 1fr); }
 
-    .gallery-section {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    /* Pre-footer */
+    .pre-footer-section { flex-direction: column; padding: 80px 40px; gap: 40px; }
 
-    .pre-footer-section {
-        flex-direction: column;
-        padding: 80px 40px;
-        gap: 40px;
-    }
+    /* Footer */
+    .footer-top { flex-direction: column; gap: 60px; }
+    .footer-info-container { align-items: flex-start; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
 
-    /* Footer Responsive Tablet */
-    .footer-top {
-        flex-direction: column;
-        gap: 60px;
-    }
+    /* Treatment page */
+    .treatment-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+    .treatment-hero-section { height: auto; min-height: 500px; }
 
-    .footer-info-container {
-        align-items: flex-start;
-        /* Align left when stacked */
-    }
+    /* About page */
+    .team-profile-container { width: 100%; height: auto; flex-direction: column; gap: 30px; }
+    .team-image-wrapper      { width: 100%; height: 380px; }
+    .team-grid-container     { gap: 60px; margin-top: 60px; }
+    .team-card               { width: 100%; }
+    .team-card-img-wrapper   { width: 100%; }
 
-    .footer-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-    }
+    /* BA page */
+    .ba-pictures-section { flex-direction: column; gap: 80px; align-items: center; }
 }
 
+/* ============================================
+   MOBILE â€” 600px and below
+   ============================================ */
 @media (max-width: 600px) {
-    .navbar {
-        padding: 0 20px;
+
+    /* --- NAVBAR --- */
+    .navbar { padding: 0 15px; }
+    .nav-left { gap: 10px; }
+    .logo { 
+        font-size: clamp(14px, 4vw, 24px); 
+        white-space: nowrap; 
+    }
+    .btn-book { padding: 5px 10px; font-size: 10px; }
+    .nav-right { gap: 15px; }
+    
+    /* Hide the text "Log In" by dropping font-size to 0 but maintaining icon visibility */
+    .navbar .nav-right .nav-link { font-size: 0; }
+    .navbar .nav-right .nav-link i { font-size: 18px; }
+
+    /* --- HERO mobile: absolute grid matching reference design
+         Portrait image 305x450 fills viewport as background.
+         White blocks keep their absolute positioning, tuned for mobile.
+    --- */
+    .image-wrapper {
+        height: calc(100svh - 348px);
+        min-height: 480px;
+        background-size: cover;
+        background-position: right top;
+        display: block;
+        position: relative;
     }
 
-    .nav-left {
-        gap: 15px;
-    }
+    /* Wrapper transparent to layout; children keep absolute pos */
+    .hero-actions-row { display: contents; }
 
+    /* Text block: left 62%, starts 33% from top */
     .block-main {
-        width: 100%;
-        padding: 30px 20px;
+        position: absolute;
+        top: 25%;
+        left: 0;
+        width: 67%;
+        height: 25%;
+        padding: 18px 16px;
     }
-
     .block-main h1 {
-        letter-spacing: -1px;
+        font-size: clamp(1.6rem, 7.5vw, 2.8rem);
+        letter-spacing: -1.5px;
+        margin-bottom: 8px;
     }
+    .block-main p { font-size: 12px; }
 
-    .block-explore,
-    .block-book {
-        width: 50%;
-    }
-
+    /* Explore block: right 38%, same row as text */
     .block-explore {
-        left: 50%;
+        position: absolute;
+        top: 50%;
+        left: 67%;
+        width: 35%;
+        height: 25%;
     }
 
-    .treatments-section {
-        padding: 60px 20px;
+    /* Book block: bottom-left 45%, starts where text block ends */
+    .block-book {
+        position: absolute;
+        top: 75%;
+        left: 0;
+        width: 34%;
+        height: 25%;
     }
+
+    .action-text { font-size: 11px; }
+    .lucide-arrow { width: 20px; }
+
+    /* --- TREATMENTS --- */
+    .treatments-section { padding: 0; }
+    .treatments-header  { padding: 50px 20px 0; }
 
     .treatments-grid {
         grid-template-columns: 1fr;
+        grid-auto-rows: minmax(140px, auto);
     }
-
-    .cell-explore,
-    .cell-large-img {
+    .cell-injectables, .cell-laser, .cell-body,
+    .cell-small-img, .cell-explore, .cell-large-img {
         grid-column: 1 / 2;
+        grid-row: auto;
     }
+    .cell-large-img { min-height: 260px; }
+    .t-text-box { font-size: 1.1rem; padding: 20px; }
+    .t-dark-box span { font-size: 12px; }
 
-    .trusted-section {
-        padding: 60px 20px;
-    }
-
+    /* --- TRUSTED SECTION --- */
+    .trusted-section { height: 70vh; padding: 50px 20px; }
     .trusted-content h2 {
-        letter-spacing: -1px;
+        font-size: clamp(2.4rem, 10vw, 4rem);
+        letter-spacing: -1.5px;
     }
 
-    .testimonials-grid {
-        grid-template-columns: 1fr;
-    }
-
+    /* --- TESTIMONIALS --- */
+    .testimonials-grid { grid-template-columns: 1fr; }
     .t-quote-cell {
         aspect-ratio: auto;
-        min-height: 150px;
-        font-size: 20px;
-        padding: 30px 20px;
+        min-height: 130px;
+        font-size: 18px;
+        padding: 28px 20px;
     }
+    .t-quote-cell:nth-child(5) { grid-column: span 1; }
 
-    .t-quote-cell:nth-child(5) {
-        grid-column: span 1;
-    }
-
-    .transformations-section {
-        flex-direction: column;
-    }
-
+    /* --- TRANSFORMATIONS --- */
+    .transformations-section { flex-direction: column; }
     .transform-half {
         width: 100%;
+        aspect-ratio: 4 / 3;
         border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        border-bottom: 1px solid rgba(255,255,255,0.4);
     }
-
+    .transform-center-text { padding: 0 20px; }
+    .transform-center-text h2 {
+        font-size: clamp(2.2rem, 9vw, 4rem);
+        letter-spacing: -1.5px;
+    }
+    .transform-center-text p { font-size: 13px; }
     .transform-action-box {
         width: 50%;
-        height: 120px;
+        min-height: 110px;
+        height: auto;
+        aspect-ratio: auto;
     }
 
-    .transform-center-text h2 {
-        letter-spacing: -1px;
+    /* --- CLINIC INTRO --- */
+    .clinic-intro-section { flex-direction: column; padding: 60px 20px; gap: 30px; }
+    .intro-left h2 {
+        font-size: clamp(2.4rem, 10vw, 4rem);
+        letter-spacing: -2px;
     }
-
-    .clinic-intro-section {
-        padding: 60px 20px;
-    }
-
-    .intro-description {
-        font-size: 20px;
-    }
-
-    .intro-buttons {
-        flex-direction: column;
-    }
-
-    .gallery-section {
-        grid-template-columns: 1fr;
-    }
-
-    .g-tall {
-        grid-row: span 1;
-        aspect-ratio: 1 / 1;
-    }
-
-    .g-number {
-        top: 20px;
-        left: 20px;
-        font-size: 20px;
-    }
-
-    .g-label {
-        font-size: 20px;
-    }
-
-    .pre-footer-section {
-        padding: 60px 20px;
-    }
-
-    .pre-footer-text {
-        font-size: 18px;
-    }
-
-    .pre-footer-nav a {
-        font-size: 18px;
-        padding: 8px 0;
-    }
-
-    /* Footer Responsive Mobile */
-    .main-footer {
-        padding: 0 20px;
-    }
-
-    .footer-top {
-        padding-bottom: 40px;
-    }
-
-    .footer-submit-btn {
+    .intro-left p { font-size: 15px; }
+    .intro-right { max-width: 100%; gap: 25px; }
+    .intro-description { font-size: 17px; }
+    .intro-buttons { flex-direction: column; gap: 12px; }
+    .btn-outline, .btn-solid {
         width: 100%;
+        text-align: center;
+        padding: 13px 20px;
     }
 
-    /* Stretch button on mobile */
-}
+    /* --- GALLERY --- */
+    .gallery-section { grid-template-columns: 1fr 1fr; margin-top: 40px; }
+    .g-tall { grid-row: span 1; aspect-ratio: 1 / 1; }
+    .g-number { top: 14px; left: 14px; font-size: 16px; }
+    .g-label  { font-size: 15px; padding: 12px; }
 
+    /* --- PRE-FOOTER --- */
+    .pre-footer-section { flex-direction: column; padding: 60px 20px; gap: 30px; }
+    .pre-footer-text { font-size: 17px; }
+    .pre-footer-nav a { font-size: 16px; padding: 6px 0; }
+
+    /* --- FOOTER --- */
+    .main-footer { padding: 0 20px; }
+    .footer-top  { flex-direction: column; gap: 40px; padding-bottom: 40px; }
+    .footer-submit-btn { width: 100%; }
+    .footer-logo-large { font-size: clamp(50px, 18vw, 120px); }
+
+    /* --- ABOUT PAGE --- */
+    .about-hero-section, .ba-hero-section {
+        min-height: 320px;
+        padding: 90px 20px 40px;
+    }
+    .about-hero-title, .ba-hero-title {
+        font-size: clamp(2.8rem, 12vw, 5rem);
+        letter-spacing: -2px;
+    }
+    .about-hero-columns { grid-template-columns: 1fr; gap: 20px; }
+    .about-hero-left, .about-hero-right { grid-column: 1 / 2; }
+    .about-hero-left h2 { font-size: clamp(1.6rem, 6vw, 2.5rem); }
+
+    .team-section  { padding: 60px 20px; }
+    .team-header   { margin-bottom: 50px; }
+    .team-header h2 {
+        font-size: clamp(2.8rem, 12vw, 5rem);
+        letter-spacing: -2px;
+    }
+    .team-header p { font-size: 16px; }
+
+    .team-profile-container { width: 100%; height: auto; flex-direction: column; gap: 25px; }
+    .team-image-wrapper     { width: 100%; height: 300px; }
+    .team-profile-info h3   { font-size: 28px; }
+    .team-profile-info h4   { font-size: 17px; margin-bottom: 20px; }
+    .team-profile-info p    { font-size: 15px; }
+
+    .team-grid-container    { flex-direction: column; margin-top: 50px; gap: 50px; }
+    .team-card, .team-card-img-wrapper { width: 100%; }
+    .team-card-img-wrapper  { height: 280px; }
+    .team-card-info h3 { font-size: 24px; }
+    .team-card-info h4 { font-size: 15px; }
+
+    /* --- BEFORE & AFTER PAGE --- */
+    .ba-pictures-section {
+        flex-direction: column;
+        gap: 60px;
+        align-items: center;
+        padding: 0 20px;
+        margin: 60px auto;
+    }
+    .ba-picture-block h2 { font-size: 26px; }
+    .ba-image-compare { flex-direction: column; gap: 8px; }
+    .ba-image { width: 100%; height: 260px; }
+
+    /* --- TREATMENT PAGE --- */
+    .treatment-hero-section { height: auto; min-height: 400px; }
+    .treatment-hero-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+    .treatment-hero-left  { grid-column: 1/2; grid-row: 1; padding: 30px 20px; }
+    .treatment-hero-right { grid-column: 1/2; grid-row: 2; height: 220px; margin-left: 0; }
+    .treatment-hero-title { font-size: clamp(2.4rem, 10vw, 4rem); letter-spacing: -2px; }
+    .treatment-hero-subtitle { font-size: 14px; }
+
+    .section-spacer { height: 60px; }
+    .treatment-list-section { padding: 0 20px; }
+    .treatment-grid { grid-template-columns: 1fr; gap: 50px; }
+    .treatment-img  { height: 240px; }
+
+        /* --- HERO ACTIONS ROW --- */
+    .hero-actions-row {
+        display: flex;
+        width: 100%;
+        border-top: 1px solid var(--border-color);
+    }
+    .hero-actions-row .block-explore,
+    .hero-actions-row .block-book {
+        position: relative;
+        top: auto; left: auto;
+        width: 50%;
+        min-height: 105px;
+        height: auto;
+        border-right: 1px solid var(--border-color);
+    }
+    .hero-actions-row .block-book {
+        border-right: none;
+        border-top: none;
+    }
+
+/* --- BOOK / SCHEDULE PAGE --- */
+    .schedule-main-wrapper { padding: 0 20px; margin-top: 90px; }
+    .schedule-content  { flex-direction: column; gap: 40px; }
+    .calendar-container { flex-direction: column; }
+    .schedule-right { min-width: unset; width: 100%; }
+}
 /* =========================================
    --- NEW: SCHEDULE & BOOKING SECTION ---
    ========================================= */
@@ -1863,6 +1950,68 @@ body {
 
 .booking-input:focus {
     border-color: var(--primary-dark);
+}
+
+/* --- LIPSTICK PRELOADER --- */
+#lipstick-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.loader-half {
+    width: 100%;
+    height: 50vh;
+    background-color: #ffffff;
+    position: absolute;
+    left: 0;
+}
+
+.loader-top {
+    top: 0;
+    transform-origin: top;
+}
+
+.loader-bottom {
+    bottom: 0;
+    transform-origin: bottom;
+}
+
+.loader-track-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    transform: translateY(-50%);
+    z-index: 10000;
+}
+
+.loader-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0;
+    height: 6px;
+    background-color: #e91e63;
+    transform: translateY(-50%);
+    border-radius: 3px;
+}
+
+.lipstick-icon {
+    position: absolute;
+    top: 50%;
+    left: -100px;
+    width: 60px;
+    height: 60px;
+    transform: translateY(-80%);
 }
 
 @media (max-width: 900px) {

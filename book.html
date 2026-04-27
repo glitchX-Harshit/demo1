@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Now - Allemande Clinic</title>
+    <title>Book Now - Sujal's The Family Salon</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -11,7 +11,7 @@
 
     <header class="navbar">
         <div class="nav-left">
-            <div class="logo">(A)</div>
+            <div class="logo">( sujal family salon )</div>
             <a href="book.html" class="btn-book">BOOK NOW</a>
         </div>
         
@@ -79,7 +79,7 @@
                     <h2>Service Details</h2>
                     <hr>
                     <div class="service-name-row">
-                        <div>Dermal Fillers</div>
+                        <div id="service-name-main">Dermal Fillers</div>
                     </div>
                     <details class="more-details">
                         <summary>More details <i class="fa-solid fa-chevron-down"></i></summary>
@@ -115,7 +115,7 @@
                     <h2>Service Details</h2>
                     <hr>
                     <div class="service-name-time" style="margin-bottom: 30px;">
-                        <p style="font-weight: 400; margin-bottom: 10px; font-size: 18px;">Dermal Fillers</p>
+                        <p id="service-name-step2" style="font-weight: 400; margin-bottom: 10px; font-size: 18px;">Dermal Fillers</p>
                         <p style="color: #666; font-size: 14px;">Saturday, March 21, 2026</p>
                     </div>
                     <button class="btn-submit" onclick="document.getElementById('booking-form').requestSubmit()">Book Now</button>
@@ -161,10 +161,10 @@
                 </div>
                 <div class="footer-divider-line"></div>
                 <div class="footer-address">
-                    123-456-7890<br>
-                    info@mysite.com<br>
-                    500 Terry Francine Street, San<br>
-                    Francisco, CA 94158
+                    077150 63369<br>
+                    info@sujalsalon.com<br>
+                    Shop no - 10, Gr.Floor, Runwal Garden,<br>
+                    Kalyan - Shilphata Rd, Manpada,<br>Dombivli East, Maharashtra 421204
                 </div>
                 <div class="footer-policy-links">
                     <a href="#">Refund Policy</a>
@@ -175,9 +175,9 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <div class="footer-logo-large">(A)</div>
+            <div class="footer-logo-large">Sujal Family Salon</div>
             <div class="footer-copyright">
-                © 2035 by Allemande Clinic. Powered and secured by <a href="#">Wix</a>
+                © 2035 by Sujal's The Family Salon. Powered and secured by <a href="#">Wix</a>
             </div>
         </div>
     </footer>
@@ -201,5 +201,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="gsap-animations.js"></script>
     <script src="main.js"></script>
+    <script>
+        // Dynamic Service Selection Handler
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const service = urlParams.get('service');
+            
+            if (service) {
+                const serviceName = decodeURIComponent(service);
+                const mainLabel = document.getElementById('service-name-main');
+                const step2Label = document.getElementById('service-name-step2');
+                const detailsSection = document.querySelector('.details-content');
+                
+                if (mainLabel) mainLabel.textContent = serviceName;
+                if (step2Label) step2Label.textContent = serviceName;
+                
+                // If it's not the default service, clear the static description
+                if (serviceName !== 'Dermal Fillers' && detailsSection) {
+                    detailsSection.textContent = 'Personalized treatment plan for ' + serviceName + '.';
+                }
+            }
+        });
+
+        // Toggle IST Time (Optional, just for live feel)
+        setInterval(() => {
+            const now = new Date();
+            const istTime = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+            const timeEl = document.getElementById('live-ist-time');
+            if (timeEl) timeEl.textContent = istTime;
+        }, 1000);
+    </script>
 </body>
 </html>

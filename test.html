@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Allemande Clinic</title>
+    <title>Sujal's The Family Salon</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
+        ::selection {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
         /* --- CSS RESET & GLOBAL STYLES --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+            font-family: 'neue-haas-grotesk-display-pro', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
         }
 
         :root {
             --hero-height: calc(100vh - 70px);
-            --border-color: #cccccc; /* Used for the grid lines in the treatments section */
+            --border-color: #cccccc;
+            --primary-dark: #3D3835;
         }
 
-        body {
+        body, html {
             background-color: #ffffff;
             color: #333333;
             overflow-x: hidden;
@@ -38,15 +45,18 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .nav-left, .nav-right {
+        .nav-left,
+        .nav-right {
             display: flex;
             align-items: center;
         }
 
-        .nav-left { gap: 30px; }
+        .nav-left {
+            gap: 30px;
+        }
 
         .logo {
             font-size: 24px;
@@ -72,7 +82,9 @@
             color: #ffffff;
         }
 
-        .nav-right { gap: 25px; }
+        .nav-right {
+            gap: 25px;
+        }
 
         .nav-link {
             text-decoration: none;
@@ -118,16 +130,14 @@
 
         /* --- SPLIT BACKGROUND WRAPPER --- */
         .image-wrapper {
-            margin-top: 70px; 
+            margin-top: 70px;
             width: 100%;
-            height: calc(var(--hero-height) * 1.6); 
-            
-            background-image: url('assets/1.png'); 
-            background-size: 100% 100%; 
+            height: calc(var(--hero-height) * 1.6);
+            background-image: url('assets/1.png');
+            background-size: 100% 100%;
             background-position: top center;
             background-repeat: no-repeat;
-            
-            position: relative; 
+            position: relative;
         }
 
         /* --- GRID OVERLAY BLOCKS --- */
@@ -138,10 +148,10 @@
         }
 
         .block-main {
-            top: 25%; 
-            left: 0%; 
-            width: 40%; 
-            height: 25%; 
+            top: 25%;
+            left: 0%;
+            width: 40%;
+            height: 25%;
             padding: 40px;
             display: flex;
             flex-direction: column;
@@ -149,7 +159,7 @@
         }
 
         .block-main h1 {
-            font-size: clamp(3rem, 5vw, 6rem); 
+            font-size: clamp(3rem, 5vw, 6rem);
             line-height: 0.95;
             font-weight: 400;
             letter-spacing: -3px;
@@ -164,7 +174,6 @@
             letter-spacing: -0.2px;
         }
 
-        /* Action Blocks Base Styles */
         .action-block {
             padding: clamp(15px, 2vw, 30px);
             display: flex;
@@ -173,6 +182,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
             text-decoration: none;
+            background-color: #ffffff;
         }
 
         .action-block:hover {
@@ -182,7 +192,7 @@
         .action-text {
             font-size: clamp(12px, 1.2vw, 16px);
             text-transform: uppercase;
-            color: #1a365d; 
+            color: #1a365d;
             font-weight: 300;
             letter-spacing: 0.5px;
             line-height: 1.2;
@@ -200,25 +210,27 @@
         }
 
         .block-explore {
-            top: 50%; 
-            left: 60%; 
-            width: 20%; 
-            height: 25%; 
+            top: 50%;
+            left: 60%;
+            width: 20%;
+            height: 25%;
         }
 
         .block-book {
-            top: 75%; 
-            left: 0%; 
-            width: 20%; 
-            height: 25%; 
+            top: 75%;
+            left: 0%;
+            width: 20%;
+            height: 25%;
         }
 
-        /* =========================================
-           --- SIGNATURE TREATMENTS SECTION ---
-           ========================================= */
-        
+
+        .hero-actions-row {
+            display: contents;
+        }
+
+        /* --- SIGNATURE TREATMENTS SECTION --- */
         .treatments-section {
-            padding: 80px 40px;
+            padding: 0px 0px;
             background-color: #ffffff;
         }
 
@@ -230,7 +242,7 @@
             font-size: clamp(2.5rem, 4vw, 4.5rem);
             font-weight: 300;
             letter-spacing: -2px;
-            color: #4a4a4a;
+            color: var(--primary-dark);
             margin-bottom: 10px;
         }
 
@@ -240,23 +252,21 @@
             font-weight: 300;
         }
 
-        /* 5-Column Grid Setup */
         .treatments-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            grid-auto-rows: calc((100vw - 80px) / 5); 
+            grid-auto-rows: calc((100vw - 80px) / 5);
             background-color: var(--border-color);
             border: 1px solid var(--border-color);
             gap: 1px;
         }
 
         .t-cell {
-            background-color: #ffffff; 
+            background-color: #ffffff;
             position: relative;
             overflow: hidden;
         }
 
-        /* Top 3 White Text Boxes */
         .t-text-box {
             padding: clamp(15px, 2vw, 25px);
             font-size: clamp(1.1rem, 1.5vw, 1.6rem);
@@ -265,14 +275,12 @@
             line-height: 1.2;
         }
 
-        /* Image Cells */
         .t-img {
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
 
-        /* Dark Action Box */
         .t-dark-box {
             background-color: #3a3a3a;
             color: #ffffff;
@@ -296,10 +304,9 @@
         }
 
         .t-dark-box .lucide-arrow {
-            stroke: #ffffff; 
+            stroke: #ffffff;
         }
 
-        /* Grid Placements */
         .cell-injectables { grid-column: 1 / 2; grid-row: 1 / 2; }
         .cell-laser { grid-column: 2 / 3; grid-row: 1 / 2; }
         .cell-body { grid-column: 3 / 4; grid-row: 1 / 2; }
@@ -307,20 +314,30 @@
         .cell-explore { grid-column: 2 / 4; grid-row: 2 / 3; }
         .cell-large-img { grid-column: 4 / 6; grid-row: 1 / 3; }
 
-        /* =========================================
-           --- NEW: TRUSTED BY PATIENTS SECTION ---
-           ========================================= */
-
+        /* --- TRUSTED BY PATIENTS SECTION --- */
         .trusted-section {
-            height: 110vh; /* As requested */
+            height: 110vh;
             width: 100%;
-            background-image: url('https://static.wixstatic.com/media/c837a6_b39675ad14fa467cb5745f6670c2384af000.jpg/v1/fill/w_1604,h_951,fp_0.50_0.50,q_85,enc_auto/c837a6_b39675ad14fa467cb5745f6670c2384af000.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            padding: 80px 40px; /* Matching the overall site padding */
+            position: relative;
+            overflow: hidden;
+            padding: 80px 40px;
             display: flex;
-            align-items: flex-start; /* Aligns content to the top */
+            align-items: flex-start;
+        }
+
+        .bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .trusted-content {
+            position: relative;
+            z-index: 1;
         }
 
         .trusted-content h2 {
@@ -328,45 +345,707 @@
             line-height: 0.95;
             font-weight: 400;
             letter-spacing: -3px;
-            color: #333333;
+            color: var(--primary-dark);
+        }
+
+        /* --- TESTIMONIALS SECTION --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            background-color: var(--border-color);
+            gap: 1px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .t-quote-cell {
+            background-color: #ffffff;
+            padding: 35px 28px;
+            aspect-ratio: 301 / 307;
+            font-size: 23.5px;
+            color: var(--primary-dark);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            display: block;
+        }
+
+        /* --- TRANSFORMATIONS SECTION --- */
+        .transformations-section {
+            position: relative;
+            width: 100%;
+            display: flex;
+        }
+
+        .transform-half {
+            flex: 1;
+            aspect-ratio: 753 / 893;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .transform-left {
+            border-right: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .transform-center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #ffffff;
+            z-index: 2;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .transform-center-text h2 {
+            font-size: clamp(3rem, 5.5vw, 7rem);
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: -3px;
+            margin-bottom: 15px;
+            text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .transform-center-text p {
+            font-size: clamp(1rem, 1.2vw, 1.4rem);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .transform-action-box {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 20%;
+            aspect-ratio: 1;
+            z-index: 5;
+        }
+
+        /* --- CLINIC INTRO SECTION --- */
+        .clinic-intro-section {
+            padding: 120px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            background-color: #ffffff;
+            gap: 40px;
+        }
+
+        .intro-left {
+            flex: 1;
+        }
+
+        .intro-left h2 {
+            font-size: clamp(3rem, 6vw, 94px);
+            color: var(--primary-dark);
+            font-weight: 400;
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .intro-left p {
+            font-size: clamp(1rem, 1.5vw, 22px);
+            color: var(--primary-dark);
+            font-weight: 300;
+        }
+
+        .intro-right {
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            padding-top: 15px;
+        }
+
+        .intro-description {
+            font-size: 21.5px;
+            color: var(--primary-dark);
+            line-height: 1.35;
+            font-weight: 300;
+        }
+
+        .intro-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-outline,
+        .btn-solid {
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary-dark);
+            color: var(--primary-dark);
+            background-color: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-dark);
+            color: #ffffff;
+        }
+
+        .btn-solid {
+            background-color: var(--primary-dark);
+            color: #ffffff;
+            border: 1px solid var(--primary-dark);
+        }
+
+        .btn-solid:hover {
+            background-color: #000000;
+            border-color: #000000;
+        }
+
+        /* --- GALLERY SECTION --- */
+        .gallery-section {
+            margin-top: 60px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background-color: var(--border-color);
+            gap: 1px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .gallery-hover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            opacity: 0; 
+            z-index: 5; 
+            pointer-events: none; 
+        }
+
+        .g-cell {
+            background-color: #ffffff;
+            aspect-ratio: 1 / 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .g-tall {
+            grid-row: span 2;
+            aspect-ratio: auto;
+        }
+
+        .g-text-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .g-number {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 23.5px;
+            color: var(--primary-dark);
+            font-weight: 300;
+        }
+
+        .g-label {
+            font-size: 23.5px;
+            color: var(--primary-dark);
+            font-weight: 300;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .g-img-cell {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #ffffff; 
+        }
+
+        /* --- PRE-FOOTER SECTION --- */
+        .pre-footer-section {
+            padding: 100px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            background-color: #ffffff;
+            gap: 40px;
+        }
+
+        .pre-footer-text {
+            flex: 1;
+            font-size: clamp(1.2rem, 2vw, 24px);
+            color: var(--primary-dark);
+            font-weight: 300;
+            line-height: 1.4;
+            max-width: 850px;
+        }
+
+        .pre-footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 250px;
+        }
+
+        .pre-footer-nav a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-size: 16px;
+            font-weight: 300;
+            transition: opacity 0.3s ease;
+        }
+
+        .pre-footer-nav a:hover {
+            opacity: 0.6;
+        }
+
+        /* --- FOOTER SECTION --- */
+        .main-footer {
+            padding: 0 40px;
+            background-color: #ffffff;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            padding-bottom: 80px;
+            gap: 40px;
+        }
+
+        .footer-form-container {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .footer-form-container label {
+            display: block;
+            font-size: 14px;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .footer-input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid var(--primary-dark);
+            border-radius: 30px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            background: transparent;
+            color: var(--primary-dark);
+        }
+
+        .footer-input:focus {
+            outline: none;
+            border-color: #000000;
+        }
+
+        .footer-checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .footer-checkbox-group input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .footer-checkbox-group label {
+            margin-bottom: 0;
+            font-size: 13px;
+        }
+
+        .footer-submit-btn {
+            background-color: var(--primary-dark);
+            color: #ffffff;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 30px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer-submit-btn:hover {
+            background-color: #000000;
+        }
+
+        .footer-info-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            min-width: 300px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-icons a {
+            color: #000000;
+            font-size: 24px;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            opacity: 0.6;
+        }
+
+        .footer-divider-line {
+            width: 100%;
+            height: 1px;
+            background-color: var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .footer-address {
+            text-align: left;
+            width: 100%;
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--primary-dark);
+            font-weight: 300;
+            margin-bottom: 50px;
+        }
+
+        .footer-policy-links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            gap: 5px;
+        }
+
+        .footer-policy-links a {
+            text-decoration: underline;
+            color: var(--primary-dark);
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .footer-policy-links a:hover {
+            opacity: 0.7;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 40px 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-logo-large {
+            font-size: clamp(20px, 6.5vw, 180px);
+            font-weight: 400;
+            color: var(--primary-dark);
+            line-height: 0.8;
+            letter-spacing: -2px;
+            white-space: nowrap;
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: var(--primary-dark);
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .footer-copyright a {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* --- SIDEBAR MENU --- */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 100vh;
+            background-color: var(--primary-dark);
+            z-index: 2000;
+            padding: 100px 50px;
+            transform: translateX(100%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .sidebar-links a {
+            color: #ffffff !important;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 300;
+            transition: color 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-links a:hover {
+            color: #cccccc !important;
+        }
+
+        .sidebar-close {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 25px; 
+            right: 40px; 
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2001;
+        }
+
+        .sidebar-close .line {
+            position: absolute;
+            width: 25px;
+            height: 1px;
+            background-color: #ffffff;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar-close .line1, .sidebar-close .line2 {
+            transform: rotate(0deg);
+        }
+
+        .sidebar-close:hover .line1 {
+            transform: rotate(45deg);
+        }
+
+        .sidebar-close:hover .line2 {
+            transform: rotate(-45deg);
         }
 
 
         /* --- RESPONSIVE ADJUSTMENTS --- */
-        @media (max-width: 900px) {
-            .block-main { width: 60%; }
-            .block-explore { left: 60%; width: 40%; }
-            .block-book { top: 75%; width: 40%; }
 
-            /* Treatments Responsive */
+        /* TABLET — 900px and below */
+        @media (max-width: 900px) {
+            .block-main  { width: 60%; }
+            .block-explore { left: 60%; width: 40%; }
+            .block-book    { top: 75%; width: 40%; }
+
             .treatments-grid {
                 grid-template-columns: repeat(2, 1fr);
                 grid-auto-rows: minmax(200px, auto);
             }
-            .cell-injectables, .cell-laser, .cell-body, .cell-small-img, .cell-explore, .cell-large-img {
+            .cell-injectables, .cell-laser, .cell-body,
+            .cell-small-img, .cell-explore, .cell-large-img {
                 grid-column: span 1;
                 grid-row: span 1;
             }
-            .cell-explore { grid-column: 1 / 3; } 
+            .cell-explore   { grid-column: 1 / 3; }
             .cell-large-img { grid-column: 1 / 3; grid-row: auto; min-height: 400px; }
+
+            .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .t-quote-cell:nth-child(5) {
+                grid-column: span 2;
+                aspect-ratio: auto;
+                min-height: 250px;
+            }
+
+            .transform-action-box { width: 35%; aspect-ratio: auto; height: 150px; }
+
+            .clinic-intro-section { flex-direction: column; padding: 80px 40px; }
+            .intro-right { max-width: 100%; }
+
+            .gallery-section { grid-template-columns: repeat(2, 1fr); }
+
+            .pre-footer-section { flex-direction: column; padding: 80px 40px; gap: 40px; }
+
+            .footer-top { flex-direction: column; gap: 60px; }
+            .footer-info-container { align-items: flex-start; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
         }
 
+        /* MOBILE — 600px and below */
         @media (max-width: 600px) {
+
+            /* Navbar */
             .navbar { padding: 0 20px; }
-            .nav-left { gap: 15px; }
-            .block-main { width: 100%; padding: 30px 20px; }
-            .block-main h1 { letter-spacing: -1px; }
-            .block-explore, .block-book { width: 50%; }
-            .block-explore { left: 50%; }
+            .nav-left { gap: 12px; }
+            .btn-book, .nav-link:not(.cart-icon) { display: none; } /* Hide text links on mobile */
 
-            /* Treatments Responsive */
-            .treatments-section { padding: 60px 20px; }
-            .treatments-grid { grid-template-columns: 1fr; }
-            .cell-explore, .cell-large-img { grid-column: 1 / 2; }
+            /* Sidebar Menu */
+            .sidebar-menu { width: 100vw; padding: 80px 40px; }
 
-            /* Trusted Section Responsive */
-            .trusted-section { padding: 60px 20px; }
-            .trusted-content h2 { letter-spacing: -1px; }
+            /* Hero Section */
+            .image-wrapper {
+                height: calc(100svh - 70px);
+                min-height: 480px;
+                background-size: cover;
+                background-position: center top;
+            }
+            
+            .block-main {
+                top: 31%; /* Step 1 */
+                left: 0;
+                width: 64%;
+                height: 23%;
+                padding: 20px;
+            }
+            .block-main h1 {
+                font-size: clamp(2rem, 9vw, 2.8rem);
+                letter-spacing: -1.5px;
+                margin-bottom: 8px;
+            }
+            .block-main p { font-size: 13px; }
+
+            .block-explore {
+                top: 54%; /* Step 2 */
+                left: 60%;
+                width: 40%;
+                height: 21%;
+                border-top: 1px solid var(--border-color);
+                border-left: 1px solid var(--border-color);
+            }
+
+            .block-book {
+                top: 75%; /* Step 3 */
+                left: 0;
+                width: 50%;
+                height: 21%;
+                border-top: 1px solid var(--border-color);
+                border-right: 1px solid var(--border-color);
+            }
+
+            .action-text { font-size: 11px; }
+            .lucide-arrow { width: 20px; }
+
+            /* Treatments Section */
+            .treatments-section { padding: 0; }
+            .treatments-header  { padding: 50px 20px 20px; margin-bottom: 0; }
+            .treatments-header h2 {
+                font-size: clamp(2.4rem, 10vw, 4rem);
+                letter-spacing: -1.5px;
+            }
+
+            .treatments-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: auto;
+            }
+            .cell-injectables, .cell-laser, .cell-body,
+            .cell-small-img, .cell-explore, .cell-large-img {
+                grid-column: 1 / 2;
+                grid-row: auto;
+            }
+            .cell-large-img { min-height: 350px; }
+            .cell-small-img { min-height: 350px; }
+            .t-text-box { font-size: 1.3rem; padding: 30px 20px; }
+            .t-dark-box span { font-size: 12px; }
+
+            /* Trusted Section */
+            .trusted-section { height: 60vh; padding: 50px 20px; }
+            .trusted-content h2 {
+                font-size: clamp(2.4rem, 10vw, 4rem);
+                letter-spacing: -1.5px;
+            }
+
+            /* Testimonials */
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .t-quote-cell {
+                aspect-ratio: auto;
+                min-height: 130px;
+                font-size: 18px;
+                padding: 28px 20px;
+            }
+            .t-quote-cell:nth-child(5) { grid-column: span 1; }
+
+            /* Transformations Section */
+            .transformations-section { 
+                flex-direction: row; /* Keeps images side by side */
+                padding-bottom: 120px; /* Makes room for absolute CTA block at bottom */
+            }
+            .transform-half {
+                width: 50%;
+                aspect-ratio: 0.8;
+                border-bottom: none;
+            }
+            .transform-left { border-right: 1px solid rgba(255,255,255,0.4); }
+            
+            .transform-center-text { 
+                top: calc(50% - 60px); /* Adjust vertical center to account for padding */
+                padding: 0 20px; 
+            }
+            .transform-center-text h2 {
+                font-size: clamp(2rem, 8vw, 4rem);
+                letter-spacing: -1.5px;
+            }
+            .transform-center-text p { font-size: 13px; }
+            
+            .transform-action-box {
+                width: 50%;
+                height: 120px;
+                bottom: 0;
+                left: 0;
+                border-top: 1px solid var(--border-color);
+                border-right: 1px solid var(--border-color);
+            }
+
+            /* Clinic Intro */
+            .clinic-intro-section { flex-direction: column; padding: 60px 20px; gap: 30px; }
+            .intro-left h2 {
+                font-size: clamp(2.4rem, 10vw, 4rem);
+                letter-spacing: -2px;
+            }
+            .intro-left p { font-size: 15px; }
+            .intro-right { max-width: 100%; gap: 25px; }
+            .intro-description { font-size: 17px; }
+            .intro-buttons { flex-direction: column; gap: 12px; }
+            .btn-outline, .btn-solid { width: 100%; text-align: center; padding: 15px; }
+
+            /* Gallery */
+            .gallery-section { grid-template-columns: 1fr; margin-top: 40px; }
+            .g-tall { grid-row: span 1; aspect-ratio: 1 / 1; }
+            .g-number { top: 20px; left: 20px; font-size: 18px; }
+            .g-label  { font-size: 20px; padding: 15px; }
+
+            /* Pre-Footer */
+            .pre-footer-section { flex-direction: column; padding: 60px 20px; gap: 30px; }
+            .pre-footer-text { font-size: 17px; }
+            .pre-footer-nav a { font-size: 16px; padding: 6px 0; }
+
+            /* Footer */
+            .main-footer { padding: 0 20px; }
+            .footer-top  { flex-direction: column; gap: 40px; padding-bottom: 40px; }
+            .footer-submit-btn { width: 100%; }
+            .footer-logo-large { font-size: clamp(50px, 18vw, 120px); }
         }
     </style>
 </head>
@@ -374,10 +1053,10 @@
 
     <header class="navbar">
         <div class="nav-left">
-            <div class="logo">(A)</div>
-            <a href="#" class="btn-book">BOOK NOW</a>
+            <div class="logo">( sujal family salon )</div>
+            <a href="book.html" class="btn-book">BOOK NOW</a>
         </div>
-        
+
         <div class="nav-right">
             <a href="#" class="nav-link">
                 <i class="fa-solid fa-circle-user" style="font-size: 18px;"></i> Log In
@@ -395,28 +1074,26 @@
     </header>
 
     <main class="image-wrapper">
-        
         <div class="grid-block block-main">
-            <h1>Allemande<br>Clinic</h1>
+            <h1>Sujal's<br>Family Salon</h1>
             <p>Advanced Aesthetics, Naturally You</p>
         </div>
-
         <a href="#" class="grid-block action-block block-explore">
             <div class="action-text">Explore<br>Treatments</div>
-            <svg class="lucide-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="miter">
+            <svg class="lucide-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                stroke-width="1.2" stroke-linecap="square" stroke-linejoin="miter">
                 <line x1="7" y1="17" x2="17" y2="7"></line>
                 <polyline points="7 7 17 7 17 17"></polyline>
             </svg>
         </a>
-
         <a href="#" class="grid-block action-block block-book">
             <div class="action-text">Book A<br>Consultation</div>
-            <svg class="lucide-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="miter">
+            <svg class="lucide-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                stroke-width="1.2" stroke-linecap="square" stroke-linejoin="miter">
                 <line x1="7" y1="17" x2="17" y2="7"></line>
                 <polyline points="7 7 17 7 17 17"></polyline>
             </svg>
         </a>
-
     </main>
 
     <section class="treatments-section">
@@ -424,25 +1101,16 @@
             <h2>Our Signature Treatments</h2>
             <p>Tailored to Your Unique Beauty</p>
         </div>
-
         <div class="treatments-grid">
-            <div class="t-cell t-text-box cell-injectables">
-                Injectables &<br>Fillers
-            </div>
-            <div class="t-cell t-text-box cell-laser">
-                Laser & Skin<br>Rejuvenation
-            </div>
-            <div class="t-cell t-text-box cell-body">
-                Body<br>Contouring
-            </div>
-
+            <div class="t-cell t-text-box cell-injectables">Injectables &<br>Fillers</div>
+            <div class="t-cell t-text-box cell-laser">Laser & Skin<br>Rejuvenation</div>
+            <div class="t-cell t-text-box cell-body">Body<br>Contouring</div>
             <div class="t-cell t-img cell-large-img" style="background-image: url('assets/2.png');"></div>
-
             <div class="t-cell t-img cell-small-img" style="background-image: url('assets/3.png');"></div>
-            
             <a href="#" class="t-cell t-dark-box cell-explore">
                 <span>EXPLORE ALL<br>TREATMENTS</span>
-                <svg class="lucide-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="miter">
+                <svg class="lucide-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke-width="1.2" stroke-linecap="square" stroke-linejoin="miter">
                     <line x1="7" y1="17" x2="17" y2="7"></line>
                     <polyline points="7 7 17 7 17 17"></polyline>
                 </svg>
@@ -451,16 +1119,188 @@
     </section>
 
     <section class="trusted-section">
+        <video class="bg-video" autoplay loop muted playsinline>
+            <source src="assets/video1.mp4" type="video/mp4">
+        </video>
         <div class="trusted-content">
             <h2>Trusted by Our<br>Patients</h2>
         </div>
     </section>
 
-    <script>
-        const hamburger = document.querySelector('.hamburger');
-        hamburger.addEventListener('click', () => {
-            console.log('Menu toggled');
-        });
-    </script>
+    <section class="testimonials-grid">
+        <blockquote class="t-quote-cell">"The results are stunning. I feel like a refreshed version of myself."
+        </blockquote>
+        <blockquote class="t-quote-cell">"An incredibly reassuring experience from start to finish."</blockquote>
+        <blockquote class="t-quote-cell">"The clinic is immaculate and the atmosphere is so calming."</blockquote>
+        <blockquote class="t-quote-cell">"Truly transformative. My confidence has soared!"</blockquote>
+        <blockquote class="t-quote-cell">"Honest advice and exceptional care. I felt safe and supported throughout."
+        </blockquote>
+    </section>
+
+    <section class="transformations-section">
+        <div class="transform-center-text">
+            <h2>Unbelievable<br>Transformations</h2>
+            <p>See the Sujal's Difference</p>
+        </div>
+        <div class="transform-half transform-left" style="background-image: url('assets/before.png');"></div>
+        <div class="transform-half transform-right" style="background-image: url('assets/after.png');"></div>
+        <a href="#" class="action-block transform-action-box">
+            <div class="action-text">View Our<br>Work</div>
+            <svg class="lucide-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                stroke-width="1.2" stroke-linecap="square" stroke-linejoin="miter">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+        </a>
+    </section>
+
+    <section class="clinic-intro-section">
+        <div class="intro-left">
+            <h2>The Sujal's The Family Salon</h2>
+            <p>A Sanctuary for Elevated Aesthetics</p>
+        </div>
+
+        <div class="intro-right">
+            <p class="intro-description">Step into a space where medical precision meets serene comfort. Our
+                state-of-the-art clinic is designed to ensure you feel relaxed and confident from the moment you arrive.
+            </p>
+
+            <div class="intro-buttons">
+                <a href="#" class="btn-outline">BOOK A CONSULTATION</a>
+                <a href="#" class="btn-solid">OUR STORY</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="gallery-hover-overlay"></div>
+
+        <div class="g-cell g-text-cell" data-hover-img="assets/reception.png">
+            <span class="g-number">01</span>
+            <span class="g-label">Reception Area</span>
+        </div>
+        <div class="g-cell g-img-cell"></div>
+        <div class="g-cell g-text-cell" data-hover-img="assets/thestore.png">
+            <span class="g-number">02</span>
+            <span class="g-label">The Store</span>
+        </div>
+        <div class="g-cell g-img-cell"></div>
+
+        <div class="g-cell g-img-cell g-tall"></div>
+
+        <div class="g-cell g-text-cell" data-hover-img="assets/relaxation.png">
+            <span class="g-number">03</span>
+            <span class="g-label">Relaxation Room</span>
+        </div>
+        <div class="g-cell g-img-cell"></div>
+        <div class="g-cell g-text-cell" data-hover-img="assets/treatment_01.png">
+            <span class="g-number">04</span>
+            <span class="g-label">Preparation Room</span>
+        </div>
+        <div class="g-cell g-text-cell" data-hover-img="assets/bodyTreatmentroom.png">
+            <span class="g-number">05</span>
+            <span class="g-label">Body Treatment Room</span>
+        </div>
+        <div class="g-cell g-text-cell" data-hover-img="assets/facialTreatmentroom.png">
+            <span class="g-number">06</span>
+            <span class="g-label">Facial Treatment Room</span>
+        </div>
+
+        <div class="g-cell g-img-cell g-tall"></div>
+
+        <div class="g-cell g-text-cell" data-hover-img="assets/waitingLounge.png">
+            <span class="g-number">07</span>
+            <span class="g-label">Waiting Lounge</span>
+        </div>
+        <div class="g-cell g-img-cell"></div>
+        <div class="g-cell g-text-cell" data-hover-img="assets/treatmentPassage.png">
+            <span class="g-number">08</span>
+            <span class="g-label">Treatment Passage</span>
+        </div>
+    </section>
+
+    <section class="pre-footer-section">
+        <div class="pre-footer-text">
+            Join our community for new product launches, skincare tips, and<br>
+            exclusive collaborations delivered straight to your inbox.
+        </div>
+        <div class="pre-footer-nav">
+            <a href="index.html">Home</a>
+            <a href="treatment.html">Treatment Menu</a>
+            <a href="beforeafter.html">Before & After</a>
+            <a href="about.html">About</a>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+
+        <div class="footer-top">
+
+            <div class="footer-form-container">
+                <form action="#" method="post">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" class="footer-input" required>
+
+                    <div class="footer-checkbox-group">
+                        <input type="checkbox" id="subscribe-check" required>
+                        <label for="subscribe-check">Yes, subscribe me to your newsletter *</label>
+                    </div>
+
+                    <button type="submit" class="footer-submit-btn">SUBSCRIBE</button>
+                </form>
+            </div>
+
+            <div class="footer-info-container">
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+
+                <div class="footer-divider-line"></div>
+
+                <div class="footer-address">
+                    077150 63369<br>
+                    info@sujalsalon.com<br>
+                    Shop no - 10, Gr.Floor, Runwal Garden,<br>
+                    Kalyan - Shilphata Rd, Manpada,<br>Dombivli East, Maharashtra 421204
+                </div>
+
+                <div class="footer-policy-links">
+                    <a href="#">Refund Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Accessibility Statement</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-logo-large">Sujal Family Salon</div>
+            <div class="footer-copyright">
+                © 2035 by Sujal's The Family Salon. Powered and secured by <a href="#">Wix</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <div class="sidebar-menu">
+        <button class="sidebar-close" aria-label="Close Menu">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+        </button>
+        <nav class="sidebar-links">
+            <a href="index.html">Home</a>
+            <a href="treatment.html">Treatment Menu</a>
+            <a href="beforeafter.html">Before & After</a>
+            <a href="about.html">About</a>
+        </nav>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="gsap-animations.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

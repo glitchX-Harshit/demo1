@@ -1,3 +1,82 @@
+// --- LIPSTICK PRELOADER LOGIC ---
+window.addEventListener('load', () => {
+    const loader = document.getElementById('lipstick-loader');
+    if (!loader) return;
+
+    const isFirstTime = !sessionStorage.getItem('lipstickLoaderSeen');
+    
+    // Using performance API to check for precise reload (type === 1)
+    let isReload = false;
+    if (window.performance && window.performance.navigation) {
+        if (window.performance.navigation.type === 1) {
+            isReload = true;
+        }
+    }
+    if (window.performance && window.performance.getEntriesByType) {
+        const navEntries = window.performance.getEntriesByType("navigation");
+        if (navEntries.length > 0 && navEntries[0].type === "reload") {
+            isReload = true;
+        }
+    }
+
+    if (isFirstTime || isReload) {
+        sessionStorage.setItem('lipstickLoaderSeen', 'true');
+        
+        // Ensure scroll is hidden during animation
+        document.body.style.overflow = "hidden";
+        loader.style.pointerEvents = "auto";
+
+        const tl = gsap.timeline({
+            onComplete: () => {
+                document.body.style.overflow = ""; // restore scroll
+                loader.style.pointerEvents = "none";
+                loader.style.display = "none";
+            }
+        });
+
+        // The lipstick and the pink line animate exactly together
+        tl.to(".lipstick-icon", {
+            duration: 1.5,
+            left: "100%",
+            ease: "power2.inOut"
+        }, 0)
+        .to(".loader-line", {
+            duration: 1.5,
+            width: "100%",
+            ease: "power2.inOut"
+        }, 0)
+        // Add a slight rotation to the lipstick
+        .fromTo(".lipstick-icon", 
+            { rotation: -15 }, 
+            { rotation: 10, duration: 1.5, ease: "none" }, 
+            0
+        )
+        // Fade out the pink line and lipstick before splitting
+        .to(".loader-track-container", {
+            duration: 0.2,
+            autoAlpha: 0,
+            ease: "power2.inOut"
+        }, "+=0.1")
+        // Split open the screen horizontally
+        .to(".loader-top", {
+            duration: 1.2,
+            y: "-100%",
+            ease: "power3.inOut"
+        }, "<")
+        .to(".loader-bottom", {
+            duration: 1.2,
+            y: "100%",
+            ease: "power3.inOut"
+        }, "<")
+        // Hide loader container
+        .to("#lipstick-loader", { duration: 0.1, autoAlpha: 0 });
+
+    } else {
+        // Skip animation if casually navigating
+        loader.style.display = "none";
+    }
+});
+
 const hamburger = document.querySelector('.hamburger');
 const sidebarMenu = document.querySelector('.sidebar-menu');
 const sidebarClose = document.querySelector('.sidebar-close');
